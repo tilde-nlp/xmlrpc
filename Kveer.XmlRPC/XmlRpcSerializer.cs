@@ -573,8 +573,10 @@ namespace CookComputing.XmlRpc
 			if (node == null)
 			{
 				retObj = "";
-			}
-			else if (node is XmlText || node is XmlWhitespace)
+			} else if (node.Name == "nil")
+			{
+				return null;
+			} else if (node is XmlText || node is XmlWhitespace)
 			{
 				if (valType != null && valType != typeof(string))
 					throw new XmlRpcTypeMismatchException(parseStack.ParseType
